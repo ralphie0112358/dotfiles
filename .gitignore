@@ -1,0 +1,6 @@
+*.bak
+*.*~
+*~
+*netrwhist
+*.pyc
+*.o

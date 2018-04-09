@@ -108,7 +108,7 @@ au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|
 
 set backup
 set patchmode=.bak
-let savevers_dirs=".backups,/home/vagrant/Backups"
+let savevers_dirs=".backups,/home/ubuntu/Backups"
 set backupskip+=*.bak
 set suffixes+=.bak
 set wildignore+=*.bak

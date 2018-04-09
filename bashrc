@@ -34,7 +34,7 @@ fi
 
 # set a fancy prompt (non-color, unless we know we "want" color)
 case "$TERM" in
-    xterm-color) color_prompt=yes;;
+    xterm-color|*-256color|screen) color_prompt=yes;;
 esac
 
 # uncomment for a colored prompt, if the terminal has the capability; turned
@@ -92,7 +92,7 @@ venv_prompt()
 
 
 if [ "$color_prompt" = yes ]; then
-    PROMPT_COMMAND="$PROMPT_COMMAND PS1=\"\$(venv_prompt)\[\e]0;${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(git_prompt)\$\a\]${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(git_prompt)\$ \" ;"
+    PROMPT_COMMAND="$PROMPT_COMMAND PS1=\"\$(venv_prompt)${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[00m\]\$(git_prompt)\$ \" ;"
 else
     PROMPT_COMMAND="$PROMPT_COMMAND PS1=\"\$(venv_prompt)\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h:\w\$(git_prompt)\$\a\]${debian_chroot:+($debian_chroot)}\u@\h:\w\$(git_prompt)\$ \" ; "
 fi
@@ -165,7 +165,7 @@ alias rm-exited=d_rmn
 
 gitkeys() {
     eval "$(ssh-agent -s)"
-    ssh-add ~/.ssh/id_rsa_github
+    ssh-add ~/.ssh/id_rsa
 }
 
 # what is taking up all my diskspace?
@@ -219,6 +219,6 @@ function d_manhole {
 
 pcurl () { curl $@ | python -m json.tool; }
 
-__END__
-
 alias invoke='env/bin/invoke'
+
+[ -r /home/ubuntu/.byobu/prompt ] && . /home/ubuntu/.byobu/prompt   #byobu-prompt#
